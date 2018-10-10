@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+
+</head>
+<body>
+    <p align="center">以下の内容で報告完了しまんた</p>
+    <p align="left">
+        報告番号：○○<br>
+        種別：<span th:text="${type}">種別</span><br>
+        内容：<span th:text="${category}">種別</span><br>
+        詳細：<span th:text="${detail}">種別</span><br>
+        名前：<span th:text="${filename}">画像名</span><br>
+        位置情報：<span th:text="${location}">位置情報</span><br>
+        <!--緯度経度-->
+        緯度:<span th:text="${lat}">緯度</span><br>
+        経度:<span th:text="${lng}">経度</span><br>
+    <!--画像があるときは画像の表示-->
+    <p th:if="${exist}">
+        画像：<img th:src="${base64}">
+    </p>
+    <!--画像がないときは無いよって表示-->
+    <p th:unless="${exist}">
+        送信した画像はありません
+    </p>
+    <script src="/js/ImageController.js" th:src="@{/js/ImageController.js}"></script>
+    <!-- src="../static/js/ImaegController.js" などにすると、PCでは表示されるが携帯端末では表示できない -->
+</body>
+</html>
