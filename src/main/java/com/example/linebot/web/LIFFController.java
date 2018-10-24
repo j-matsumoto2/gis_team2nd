@@ -14,6 +14,8 @@ import java.nio.file.Path;
 import java.util.Base64;
 import java.util.Optional;
 
+//database接続用
+//import static com.example.linebot.web.database.connectionTest;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 
@@ -55,6 +57,11 @@ public class LIFFController {
                       @RequestParam("lat")String lat,
                       @RequestParam("lng")String lng
     ) throws IOException {
+
+//        //database接続
+     //   Database database =new Database();
+       // database.database(lat);
+
         modelMap.addAttribute("type",type);
         modelMap.addAttribute("category",cat);
         modelMap.addAttribute("detail",det);
