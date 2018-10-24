@@ -37,7 +37,7 @@ function drawMap() {
         //現段階（10月ではまだ住所変換できてないので緯度・経度のまま）marker = L.marker([41,111]).addTo(mymap).bindPopup("現在地\n" +[41,111]).openPopup();
 
        marker = L.marker(e.latlng).addTo(mymap).bindPopup("現在地\n" + e.latlng).openPopup();
-        //↑の下に以下の二行書けば取得できる　　inputはさむとできない　原因はわからん
+        //↑の下に以下の二行書けば取得できる　　inputはさむとできない　原因はわからん?
         newLat = e.latlng.lat; //緯度取得
         newLon = e.latlng.lng; //経度取得
         inputLocation(e.coords.latitude,e.coords.longitude);
