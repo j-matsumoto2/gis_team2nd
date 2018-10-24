@@ -13,5 +13,5 @@ public class Push {
         return "Get from " + request.getRequestURL();
     }
 
-    //種別選択のテスト
+    //種別選択のテストaaa
 }
