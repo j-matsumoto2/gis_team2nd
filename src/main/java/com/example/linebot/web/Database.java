@@ -17,9 +17,9 @@ public class Database {
             //-----------------
             // 接続
             //-----------------
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", // "jdbc:postgresql://[場所(Domain)]:[ポート番号]/[DB名]"
-                    "postgres", // ログインロール
-                    "postgres"); // パスワード
+            connection = DriverManager.getConnection("", // "jdbc:postgresql://[場所(Domain)]:[ポート番号]/[DB名]"
+                    "", // ログインロール
+                    ""); // パスワード
             statement = connection.createStatement();
 
             //-----------------
