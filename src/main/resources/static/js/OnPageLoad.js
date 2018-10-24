@@ -24,6 +24,7 @@ function drawMap() {
     var tmp_lat;
     var tmp_lng;
     //地図の表示
+
     mymap = L.map('mapid');
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -32,8 +33,10 @@ function drawMap() {
     }).addTo(mymap);
 
     function onLocationFound(e) {
-        //現段階（10月ではまだ住所変換できてないので緯度・経度のまま）
-        marker = L.marker(e.latlng).addTo(mymap).bindPopup("現在地\n" + e.latlng).openPopup();
+
+        //現段階（10月ではまだ住所変換できてないので緯度・経度のまま）marker = L.marker([41,111]).addTo(mymap).bindPopup("現在地\n" +[41,111]).openPopup();
+
+       marker = L.marker(e.latlng).addTo(mymap).bindPopup("現在地\n" + e.latlng).openPopup();
         //↑の下に以下の二行書けば取得できる　　inputはさむとできない　原因はわからん
         newLat = e.latlng.lat; //緯度取得
         newLon = e.latlng.lng; //経度取得
@@ -44,6 +47,8 @@ function drawMap() {
 
     function onLocationError(e) {
         alert("現在地を取得できませんでした。" + e.message);
+        marker = L.marker([ 42.8281,141.652328]).addTo(mymap).bindPopup("現在地\n" +[ 42.8281,141.652328]).openPopup();
+
     }
 
     function onMapClick(e) {
@@ -60,8 +65,8 @@ function drawMap() {
     mymap.on('locationfound', onLocationFound);
     mymap.on('locationerror', onLocationError);
     mymap.on('click', onMapClick);
-
-    mymap.locate({setView: true, maxZoom: 16,minZoom: 12, timeout: 20000});
+//enable追加
+    mymap.locate({setView: true, maxZoom: 16,minZoom: 12, timeout: 20000, enableHighAccuracy: true});
 
 }
 
@@ -134,6 +139,7 @@ function inputLocation(latitude,longitude) {
         document.report.location.value = "緯度：" + latitude + ", 経度：" + longitude;
         oldLat = latitude;
         oldLon = longitude;
+        //使ってない
     }
 }
 
@@ -147,6 +153,7 @@ function setCurLocation(){
 
     function success(e) {
         mymap.removeLayer(marker);
+       // enableHighAccuracy: true;
         var lat  = e.coords.latitude;
         var lng = e.coords.longitude;
         mymap.setView([lat, lng], 15);
@@ -157,12 +164,17 @@ function setCurLocation(){
          newLat=lat;
          newLon=lng;
         inputLocation(lat,lng);
+
     };
 
     function error() {
         alert('現在地を取得できませんでした。');
+
     };
 
     navigator.geolocation.getCurrentPosition(success, error);
+
+    //3     {enableHighAccuracy: true}
+   // enableHighAccuracy: true;
 }
 
